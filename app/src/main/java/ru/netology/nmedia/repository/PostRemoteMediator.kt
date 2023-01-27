@@ -21,12 +21,12 @@ class PostRemoteMediator(
     private val postDao: PostDao,
     private val postRemoteKeyDao: PostRemoteKeyDao,
 ) : RemoteMediator<Int, PostEntity>() {
-    /*override suspend fun initialize(): InitializeAction =
+    override suspend fun initialize(): InitializeAction =
         if (postDao.isEmpty()){
             InitializeAction.LAUNCH_INITIAL_REFRESH
         } else {
             InitializeAction.SKIP_INITIAL_REFRESH
-        }*/
+        }
 
     override suspend fun load(
         loadType: LoadType,
@@ -73,7 +73,7 @@ class PostRemoteMediator(
                                 ),
                             )
                         )
-                        //postDao.removeAll()
+
                     }
                     LoadType.PREPEND -> {
                         postRemoteKeyDao.insert(
